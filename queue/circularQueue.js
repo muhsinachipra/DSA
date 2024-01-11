@@ -80,14 +80,3 @@ queue.print()
 
 queue.enqueue(60)
 queue.print()
-
-
-
-
-// echo "# DSA" >> README.md
-// git init
-// git add README.md
-// git commit -m "first commit"
-// git branch -M main
-// git remote add origin https://github.com/muhsinachipra/DSA.git
-// git push -u origin main
