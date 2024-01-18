@@ -1,4 +1,4 @@
-const LinkedList = require('./SLinkedListWithTail')
+const LinkedList = require('../linkedList/SLinkedListWithTail')
 
 class LinkedListStack {
     constructor() {
