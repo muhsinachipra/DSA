@@ -17,4 +17,5 @@ const arr = [8, 20, -2, 4, -6]
 insertionSort(arr)
 console.log(arr) // [-6, -2, 4, 8, 20]
 
-// Big-0 = 0[n^2)
+// Big-0 = 0(n^2)T
+// Big-0 = 0(1)S
