@@ -56,6 +56,7 @@ class BinarySearchTree {
         }
     }
 
+    // DFS ALGORITHMS
     preOrder(root) {
         if (root) {
             console.log(root.value);
@@ -66,16 +67,16 @@ class BinarySearchTree {
 
     inOrder(root) {
         if (root) {
-            this.preOrder(root.left)
+            this.inOrder(root.left)
             console.log(root.value);
-            this.preOrder(root.right)
+            this.inOrder(root.right)
         }
     }
 
     postOrder(root) {
         if (root) {
-            this.preOrder(root.left)
-            this.preOrder(root.right)
+            this.postOrder(root.left)
+            this.postOrder(root.right)
             console.log(root.value);
         }
     }
@@ -96,7 +97,7 @@ class BinarySearchTree {
         }
     }
 
-    // Using the optimised queue implementation
+    // BFS ALGORITHM USING THE OPTIMISED QUEUE
     levelOrder() {
         const queue = new Queue();
         queue.enqueue(this.root);
@@ -163,16 +164,16 @@ bst.insert(10)
 bst.insert(5)
 bst.insert(15)
 bst.insert(3)
-// bst.insert(7)
+bst.insert(7)
 
-// console.log(bst.search(bst.root, 10))
-// console.log(bst.search(bst.root, 5))
-// console.log(bst.search(bst.root, 15))
-// console.log(bst.search(bst.root, 20))
+console.log(bst.search(bst.root, 10))
+console.log(bst.search(bst.root, 5))
+console.log(bst.search(bst.root, 15))
+console.log(bst.search(bst.root, 20))
 
-// bst.postOrder(bst.root)
-// console.log(bst.min(bst.root))
-// console.log(bst.max(bst.root))
+bst.postOrder(bst.root)
+console.log(bst.min(bst.root))
+console.log(bst.max(bst.root))
 
 bst.levelOrder()
 bst.delete(10)
