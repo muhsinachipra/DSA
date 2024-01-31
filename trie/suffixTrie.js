@@ -17,14 +17,12 @@ class SuffixTrie {
     }
 
     insertSuffixStartingAt(index, str) {
-        let currentNode = this.root;
+        let currentNode = this.root
         for (let i = index; i < str.length; i++) {
-            const letter = str[i];
-            if (!currentNode.children.has(letter)) {
-                const newNode = new TrieNode();
-                currentNode.children.set(letter, newNode);
+            if (!currentNode.children.has(str[i])) {
+                currentNode.children.set(str[i], new TrieNode())
             }
-            currentNode = currentNode.children.get(letter);
+            currentNode = currentNode.children.get(str[i]);
         }
         currentNode.isEnd = true;
     }
@@ -32,9 +30,8 @@ class SuffixTrie {
     hasWord(str) {
         let currentNode = this.root;
         for (let i = 0; i < str.length; i++) {
-            const letter = str[i];
-            if (currentNode.children.has(letter)) {
-                currentNode = currentNode.children.get(letter);
+            if (currentNode.children.has(str[i])) {
+                currentNode = currentNode.children.get(str[i]);
             } else {
                 return false;
             }
