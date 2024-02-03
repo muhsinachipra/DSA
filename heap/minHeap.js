@@ -18,7 +18,7 @@ class MinHeap {
 
         if (!this.isEmpty()) {
             this.heap[0] = last;
-            this.heapifyDown();
+            this.heapifyDown(0);
         }
 
         return min;
@@ -41,8 +41,7 @@ class MinHeap {
         }
     }
 
-    heapifyDown() {
-        let index = 0;
+    heapifyDown(index) {
         while (true) {
             let smallestChildIndex = index;
             let leftChildIndex = (2 * index) + 1;
