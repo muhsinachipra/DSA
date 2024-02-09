@@ -73,6 +73,27 @@ class Graph {
             }
         }
     }
+
+    hasCycle(startingVertex) {
+        const visited = new Set();
+
+        const dfs = (vertex, parent) => {
+            visited.add(vertex);
+
+            for (const neighbor of this.adjacencyList[vertex]) {
+                if (!visited.has(neighbor)) {
+                    if (dfs(neighbor, vertex)) {
+                        return true;
+                    }
+                } else if (neighbor !== parent) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        return dfs(startingVertex, null);
+    }
 }
 
 const graph = new Graph();
@@ -84,6 +105,9 @@ graph.addVertex('D');
 graph.addEdge('A', 'B');
 graph.addEdge('B', 'C');
 graph.addEdge('C', 'D');
+// graph.addEdge('B', 'D');
+
+console.log(graph.hasCycle('A'))
 
 graph.bfs('C')
 console.log('--------------------------------------------------------------------------------------------------------------------------------')
@@ -93,5 +117,3 @@ console.log(graph.hasEdge('B', 'A'));
 graph.removeEdge('A', 'B');
 graph.removeVertex('B');
 graph.display();
-
-
