@@ -49,19 +49,49 @@ class Graph {
             console.log(vertex + ' -> ' + [...this.adjacencyList[vertex]])
         }
     }
+
+    bfs(startingVertex) {
+        const visited = {}
+        const queue = [startingVertex]
+        while (queue.length) {
+            const currentVertex = queue.shift()
+            if (!visited[currentVertex]) {
+                console.log(currentVertex)
+                visited[currentVertex] = true
+            }
+
+            for (const adjacentVertex of this.adjacencyList[currentVertex]) {
+                if (!visited[adjacentVertex]) {
+                    queue.push(adjacentVertex)
+                }
+            }
+        }
+
+        for (const vertex in this.adjacencyList) {
+            if (!visited[vertex]) {
+                this.bfs(vertex)
+            }
+        }
+    }
 }
 
 const graph = new Graph();
 graph.addVertex('A');
 graph.addVertex('B');
 graph.addVertex('C');
+graph.addVertex('D');
 
 graph.addEdge('A', 'B');
 graph.addEdge('B', 'C');
+graph.addEdge('C', 'D');
 
+graph.bfs('C')
+console.log('--------------------------------------------------------------------------------------------------------------------------------')
 graph.display();
 console.log(graph.hasEdge('B', 'A'));
 
 graph.removeEdge('A', 'B');
 graph.removeVertex('B');
 graph.display();
+
+
