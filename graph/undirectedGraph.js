@@ -74,6 +74,22 @@ class Graph {
         }
     }
 
+    dfs(startingVertex) {
+        const visited = {};
+        this.dfsHelper(startingVertex, visited);
+    }
+
+    dfsHelper(vertex, visited) {
+        visited[vertex] = true;
+        console.log(vertex);
+
+        for (const neighbor of this.adjacencyList[vertex]) {
+            if (!visited[neighbor]) {
+                this.dfsHelper(neighbor, visited);
+            }
+        }
+    }
+
     hasCycle(startingVertex) {
         const visited = new Set();
 
@@ -105,15 +121,16 @@ graph.addVertex('D');
 graph.addEdge('A', 'B');
 graph.addEdge('B', 'C');
 graph.addEdge('C', 'D');
-// graph.addEdge('B', 'D');
+graph.addEdge('B', 'D');
 
-console.log(graph.hasCycle('A'))
+// console.log(graph.hasCycle('A'))
 
 graph.bfs('C')
 console.log('--------------------------------------------------------------------------------------------------------------------------------')
-graph.display();
-console.log(graph.hasEdge('B', 'A'));
+graph.dfs('C')
+// graph.display();
+// console.log(graph.hasEdge('B', 'A'));
 
-graph.removeEdge('A', 'B');
-graph.removeVertex('B');
-graph.display();
+// graph.removeEdge('A', 'B');
+// graph.removeVertex('B');
+// graph.display();

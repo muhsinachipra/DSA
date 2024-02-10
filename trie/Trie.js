@@ -36,7 +36,7 @@ class Trie {
         return node.isEndOfWord
     }
 
-    startsWith(prefix) {
+    hasPrefix(prefix) {
         let node = this.root;
         for (const char of prefix) {
             if (!node.children.has(char)) {
@@ -49,8 +49,8 @@ class Trie {
 
     delete(word) {
         if (!this.search(word)) return false;
-        node = this.root;
-        path = [this.root]
+        let node = this.root;
+        let path = [this.root]
 
         for (const char of word) {
             path.push(node)
@@ -101,15 +101,15 @@ class Trie {
     }
 
     countWordsWithPrefix(prefix) {
-        let currentNode = this.root
-        for (let i = 0; i < prefix.length; i++) {
-            if (currentNode.children.has(prefix[i])) {
-                currentNode = currentNode.children.get(prefix[i])
+        let node = this.root
+        for (const char of prefix) {
+            if (node.children.has(char)) {
+                node = node.children.get(char)
             } else {
                 return 0
             }
         }
-        return this.countWord(currentNode)
+        return this.countWord(node)
     }
 
     countWord(node) {
@@ -145,7 +145,7 @@ trie.insert("banana");
 trie.insert("bat");
 console.log(trie.search("apple"));   // true
 console.log(trie.search("app"));     // false
-console.log(trie.startsWith("app")); // true
+console.log(trie.hasPrefix("app")); // true
 trie.insert("app");
 console.log(trie.search("app"));     // true
 console.log("Total words:", trie.countWords());
