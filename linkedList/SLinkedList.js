@@ -133,6 +133,32 @@ class LinkedList {
         this.head = prev;
     }
 
+    reverseFromIndex(index) {
+        if (index < 0 || index > this.size) {
+            return console.log('Invalid Index')
+        } else {
+            let prev = null
+            let cur = this.head
+            for (let i = 0; i < index; i++) {
+                prev = cur
+                cur = cur.next
+            }
+            let reversePrev = null
+            let reverseCur = cur
+            while (reverseCur) {
+                let next = reverseCur.next
+                reverseCur.next = reversePrev
+                reversePrev = reverseCur
+                reverseCur = next
+            }
+            if (prev === null) {
+                this.head = reversePrev
+            } else {
+                prev.next = reversePrev
+            }
+        }
+    }
+
     print() {
         if (this.isEmpty()) {
             console.log("list is Empty!");
@@ -157,5 +183,6 @@ list.insert(30, 2)
 list.insert(40, 3)
 list.print()
 
-list.reverse()
+// list.reverse()
+list.reverseFromIndex(2)
 list.print()
