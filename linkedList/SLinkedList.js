@@ -159,6 +159,28 @@ class LinkedList {
         }
     }
 
+    reverseFromMiddle() {
+        let fast = this.head
+        let slow = this.head
+        let prev = null
+        while (fast && fast.next) {
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
+        }
+        let middle = slow
+
+        let reversePrev = null
+        let reverseCur = middle
+        while (reverseCur) {
+            let next = reverseCur.next
+            reverseCur.next = reversePrev
+            reversePrev = reverseCur
+            reverseCur = next
+        }
+        prev.next = reversePrev
+    }
+
     print() {
         if (this.isEmpty()) {
             console.log("list is Empty!");
@@ -181,8 +203,10 @@ list.insert(10, 0)
 list.insert(20, 1)
 list.insert(30, 2)
 list.insert(40, 3)
+list.insert(50, 4)
+list.insert(60, 5)
 list.print()
 
 // list.reverse()
-list.reverseFromIndex(2)
+list.reverseFromMiddle()
 list.print()

@@ -70,7 +70,6 @@ class LinkedList {
             }
             prev.next = null;
             this.tail = prev;
-
         }
         this.size--;
         return value;

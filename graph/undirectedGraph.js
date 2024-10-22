@@ -95,7 +95,7 @@ class Graph {
 
         const dfs = (vertex, parent) => {
             visited.add(vertex);
-
+            
             for (const neighbor of this.adjacencyList[vertex]) {
                 if (!visited.has(neighbor)) {
                     if (dfs(neighbor, vertex)) {
