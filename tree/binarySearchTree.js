@@ -218,6 +218,30 @@ class BinarySearchTree {
             return false
         }
     }
+
+    findClosestValue(root, target) {
+        let closest = root.value;
+        let currentNode = root;
+
+        while (currentNode !== null) {
+            // Update the closest value if the current node is closer to the target
+            if (Math.abs(target - currentNode.value) < Math.abs(target - closest)) {
+                closest = currentNode.value;
+            }
+
+            // Move left or right depending on the target value
+            if (target < currentNode.value) {
+                currentNode = currentNode.left;
+            } else if (target > currentNode.value) {
+                currentNode = currentNode.right;
+            } else {
+                break; // Exact match found, exit early
+            }
+        }
+
+        return closest;
+    }
+
 }
 
 const bst = new BinarySearchTree();
@@ -228,6 +252,10 @@ bst.insert(5)
 bst.insert(15)
 bst.insert(3)
 bst.insert(7)
+
+console.log('Closest value to 12:', bst.findClosestValue(bst.root, 12));  // Expected output: 10
+console.log('Closest value to 6:', bst.findClosestValue(bst.root, 6));   // Expected output: 5
+
 
 console.log(bst.sumOfAllElements(bst.root))
 console.log(bst.maxValue(bst.root))

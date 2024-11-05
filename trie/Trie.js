@@ -76,7 +76,7 @@ class Trie {
         return this.wordCount
     }
 
-    getWordWithPrefix(prefix) {
+    getWordsWithPrefix(prefix) {
         let node = this.root;
         for (const char of prefix) {
             if (!node.children.has(char)) {
@@ -86,17 +86,17 @@ class Trie {
         }
 
         const words = [];
-        this.dfs(node, prefix, words)
+        this._dfs(node, prefix, words)
         return words
     }
 
-    dfs(node, prefix, words) {
+    _dfs(node, prefix, words) {
         if (node.isEndOfWord) {
             words.push(prefix)
         }
 
         for (const [char, child] of node.children) {
-            this.dfs(child, prefix + char, words)
+            this._dfs(child, prefix + char, words)
         }
     }
 
@@ -109,14 +109,14 @@ class Trie {
                 return 0
             }
         }
-        return this.countWord(node)
+        return this._countWord(node)
     }
 
-    countWord(node) {
+    _countWord(node) {
         if (!node) return 0
         let count = node.isEndOfWord ? 1 : 0;
         for (let child of node.children.values()) {
-            count += this.countWord(child)
+            count += this._countWord(child)
         }
         return count
     }
@@ -152,7 +152,7 @@ console.log("Total words:", trie.countWords());
 
 // User starts typing "app"
 const prefix = "app";
-const suggestions = trie.getWordWithPrefix(prefix);
+const suggestions = trie.getWordsWithPrefix(prefix);
 
 console.log("Autocomplete suggestions for", prefix, ":", suggestions);
 // Output: Autocomplete suggestions for app : [ 'apple', 'appetizer', 'application' ]
