@@ -195,16 +195,47 @@ class LinkedList {
         }
     }
 
+    // Detect if the linked list contains a cycle Floyd's Cycle Detection Algorithm, also known as the Tortoise and Hare Algorithm
+    hasCycle() {
+        let slow = this.head
+        let fast = this.head
+        while (fast && fast.next) {
+            slow = slow.next
+            fast = fast.next.next
+            if (slow === fast) {
+                return true
+            }
+        }
+        return false
+    }
+
+    removeOdd() {
+        while (this.head && this.head.value % 2 !== 0) {
+            this.head = this.head.next
+        }
+
+        let current = this.head
+        while (current && current.next) {
+            if (current.next.value % 2 !== 0) {
+                current.next = current.next.next
+            } else {
+                current = current.next
+            }
+        }
+    }
 }
 
 const list = new LinkedList()
 
-list.insert(10, 0)
-list.insert(20, 1)
-list.insert(30, 2)
-list.insert(40, 3)
-list.insert(50, 4)
-list.insert(60, 5)
+list.insert(1, 0)
+list.insert(2, 1)
+list.insert(3, 2)
+list.insert(4, 3)
+list.insert(5, 4)
+list.insert(6, 5)
+list.print()
+
+list.removeOdd()
 list.print()
 
 // list.reverse()
