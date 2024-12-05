@@ -223,21 +223,144 @@ class LinkedList {
             }
         }
     }
+
+    findNthFromEnd(n) {
+        let first = this.head
+        let second = this.head
+
+        for (let i = 0; i < n; i++) {
+            if (!first) return null
+            first = first.next
+        }
+
+        while (first) {
+            first = first.next
+            second = second.next
+        }
+
+        return second ? second.value : null
+    }
+
+    removeDuplicatesUnsorted() {
+        const seen = new Set()
+        let current = this.head
+        let prev = null
+        while (current) {
+            if (seen.has(current.value)) {
+                prev.next = current.next
+            } else {
+                seen.add(current.value)
+                prev = current
+            }
+            current = current.next
+        }
+    }
+
+    isPalindrome() {
+        if (!this.head || !this.head.next) return true;
+    
+        // Step 1: Find the middle of the list
+        let slow = this.head;
+        let fast = this.head;
+    
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+    
+        // Step 2: Reverse the second half of the list
+        let prev = null;
+        let current = slow;
+    
+        while (current) {
+            let next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+    
+        // Step 3: Compare the first and second halves
+        let firstHalf = this.head;
+        let secondHalf = prev; // This is the reversed second half
+        let isPalindrome = true;
+    
+        while (secondHalf) {
+            if (firstHalf.value !== secondHalf.value) {
+                isPalindrome = false;
+                break;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+    
+        // Step 4: Restore the second half of the list
+        current = prev;
+        prev = null;
+    
+        while (current) {
+            let next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+    
+        return isPalindrome;
+    }
+    
+
 }
 
-const list = new LinkedList()
+const list = new LinkedList();
+list.append(1);
+list.append(2);
+list.append(3);
+list.append(2);
+list.append(1);
 
-list.insert(1, 0)
-list.insert(2, 1)
-list.insert(3, 2)
-list.insert(4, 3)
-list.insert(5, 4)
-list.insert(6, 5)
-list.print()
+console.log("Original List:");
+list.print();
 
-list.removeOdd()
-list.print()
+if (list.isPalindrome()) {
+    console.log("The linked list is a palindrome.");
+} else {
+    console.log("The linked list is not a palindrome.");
+}
 
-// list.reverse()
-list.reverseFromMiddle()
-list.print()
+
+
+
+// const unsortedList = new LinkedList();
+// unsortedList.append(4);
+// unsortedList.append(2);
+// unsortedList.append(4);
+// unsortedList.append(3);
+// unsortedList.append(2);
+
+// console.log("Original Unsorted List:");
+// unsortedList.print();
+
+// unsortedList.removeDuplicatesUnsorted();
+
+// console.log("Unsorted List After Removing Duplicates:");
+// unsortedList.print();
+
+
+
+// const list = new LinkedList()
+
+// list.insert(1, 0)
+// list.insert(2, 1)
+// list.insert(3, 2)
+// list.insert(4, 3)
+// list.insert(5, 4)
+// list.insert(6, 5)
+// list.print()
+
+// console.log(list.findNthFromEnd(2))
+
+// list.removeOdd()
+// list.print()
+
+// // list.reverse()
+// list.reverseFromMiddle()
+// list.print()
