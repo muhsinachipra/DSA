@@ -6,7 +6,7 @@ class Node {
     }
 }
 class DoublyLinkedList {
-    constructor(value) {
+    constructor() {
         this.head = null;
         this.tail = null;
         this.size = 0;

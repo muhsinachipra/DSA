@@ -1,4 +1,4 @@
-function isValidParentheses(s) {
+function isValidParentheses(string) {
     const stack = [];
     const matchingParentheses = {
         ')': '(',
@@ -6,7 +6,7 @@ function isValidParentheses(s) {
         ']': '['
     };
 
-    for (let char of s) {
+    for (let char of string) {
         if (char === '(' || char === '{' || char === '[') {
             // Push opening brackets onto the stack
             stack.push(char);

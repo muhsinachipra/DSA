@@ -138,13 +138,13 @@ class LinkedList {
             return console.log('Invalid Index')
         } else {
             let prev = null
-            let cur = this.head
+            let curr = this.head
             for (let i = 0; i < index; i++) {
-                prev = cur
-                cur = cur.next
+                prev = curr
+                curr = curr.next
             }
             let reversePrev = null
-            let reverseCur = cur
+            let reverseCur = curr
             while (reverseCur) {
                 let next = reverseCur.next
                 reverseCur.next = reversePrev
@@ -210,12 +210,11 @@ class LinkedList {
     }
 
     removeOdd() {
-        while (this.head && this.head.value % 2 !== 0) {
+        while (this.head.value % 2 !== 0) {
             this.head = this.head.next
         }
-
         let current = this.head
-        while (current && current.next) {
+        while (current.next) {
             if (current.next.value % 2 !== 0) {
                 current.next = current.next.next
             } else {
@@ -258,32 +257,32 @@ class LinkedList {
 
     isPalindrome() {
         if (!this.head || !this.head.next) return true;
-    
+
         // Step 1: Find the middle of the list
         let slow = this.head;
         let fast = this.head;
-    
+
         while (fast && fast.next) {
             slow = slow.next;
             fast = fast.next.next;
         }
-    
+
         // Step 2: Reverse the second half of the list
         let prev = null;
         let current = slow;
-    
+
         while (current) {
             let next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
-    
+
         // Step 3: Compare the first and second halves
         let firstHalf = this.head;
         let secondHalf = prev; // This is the reversed second half
         let isPalindrome = true;
-    
+
         while (secondHalf) {
             if (firstHalf.value !== secondHalf.value) {
                 isPalindrome = false;
@@ -292,39 +291,39 @@ class LinkedList {
             firstHalf = firstHalf.next;
             secondHalf = secondHalf.next;
         }
-    
+
         // Step 4: Restore the second half of the list
         current = prev;
         prev = null;
-    
+
         while (current) {
             let next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
-    
+
         return isPalindrome;
     }
-    
+
 
 }
 
-const list = new LinkedList();
-list.append(1);
-list.append(2);
-list.append(3);
-list.append(2);
-list.append(1);
+// const list = new LinkedList();
+// list.append(1);
+// list.append(2);
+// list.append(3);
+// list.append(2);
+// list.append(1);
 
-console.log("Original List:");
-list.print();
+// console.log("Original List:");
+// list.print();
 
-if (list.isPalindrome()) {
-    console.log("The linked list is a palindrome.");
-} else {
-    console.log("The linked list is not a palindrome.");
-}
+// if (list.isPalindrome()) {
+//     console.log("The linked list is a palindrome.");
+// } else {
+//     console.log("The linked list is not a palindrome.");
+// }
 
 
 
@@ -346,21 +345,21 @@ if (list.isPalindrome()) {
 
 
 
-// const list = new LinkedList()
+const list = new LinkedList()
 
-// list.insert(1, 0)
-// list.insert(2, 1)
-// list.insert(3, 2)
-// list.insert(4, 3)
-// list.insert(5, 4)
-// list.insert(6, 5)
-// list.print()
+list.insert(1, 0)
+list.insert(2, 1)
+list.insert(3, 2)
+list.insert(4, 3)
+list.insert(5, 4)
+list.insert(6, 5)
+list.print()
 
-// console.log(list.findNthFromEnd(2))
+console.log(list.findNthFromEnd(2))
 
-// list.removeOdd()
-// list.print()
+list.removeOdd()
+list.print()
 
-// // list.reverse()
-// list.reverseFromMiddle()
-// list.print()
+// list.reverse()
+list.reverseFromMiddle()
+list.print()
