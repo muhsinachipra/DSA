@@ -29,7 +29,7 @@ function heapifyDown(arr, heapSize, currentIdx) {
 }
 
 function swap(arr, i, j) {
-    [arr[i], arr[j]] = [arr[j], arr[i]]
+    [arr[i], arr[j]] = [arr[j], arr[i]];
 }
 
 const array = [50, 40, 60, 30, 20, 55, 75];

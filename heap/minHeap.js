@@ -53,7 +53,7 @@ class MinHeap {
                 smallestChildIndex = rightChildIndex;
             }
             if (index !== smallestChildIndex) {
-                [this.heap[index], this.heap[smallestChildIndex]] = [this.heap[smallestChildIndex], this.heap[index]]
+                [this.heap[index], this.heap[smallestChildIndex]] = [this.heap[smallestChildIndex], this.heap[index]];
                 index = smallestChildIndex;
             } else {
                 break;
