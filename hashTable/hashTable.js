@@ -23,7 +23,7 @@ class HashTable {
             if (sameKeyItem) {
                 sameKeyItem[1] = value;
             } else {
-                bucket.push([key, value]);
+                bucket.push([key, value]); // separate chaining
             }
         }
     }
